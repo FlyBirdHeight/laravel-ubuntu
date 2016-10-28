@@ -26,7 +26,7 @@ class UsersController extends Controller
         if(Auth::attempt(['email'=>$request->get('email'),'password'=>$request->get('password')])){
             return redirect('/');
         }
-        Session::flash('user_login_failed','密码不正确或邮箱没有验证');
+        Session::flash('user_login_failed','密码不正确');
         return redirect('/user/login')->withInput();
     }
 
@@ -116,11 +116,11 @@ class UsersController extends Controller
         
         //send mail
         //subject view confirm_code email
-        $subject = 'Confirm Your Email';
-        $view = 'emails.test';
-        Mail::send($view,$data,function ($message) use ($user,$subject){
-            $message->to($user->email)->subject($subject);
-        });
+//        $subject = 'Confirm Your Email';
+//        $view = 'emails.test';
+//        Mail::send($view,$data,function ($message) use ($user,$subject){
+//            $message->to($user->email)->subject($subject);
+//        });
         return redirect('/');
     }
 
