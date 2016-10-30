@@ -1,22 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Adsion</title>
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <title>Personinfor</title>
+    <!--mobile apps-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="My Resume Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--mobile apps-->
+    <!--Custom Theme files-->
+    <link href="{{asset('css/css/bootstrap.css')}}" type="text/css" rel="stylesheet" media="all">
+    <link href="{{asset('css/css/style.css')}}" type="text/css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
+    <link rel="stylesheet" href="{{asset('css/css/swipebox.css')}}">
+    <!--//Custom Theme files-->
+    <!--js-->
+    <script src="{{url('js/js/jquery-1.11.1.min.js')}}"></script>
+    <!-- //js -->
+    <!--web-fonts-->
+    <link href='//fonts.googleapis.com/css?family=Overlock:400,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <!--//web-fonts-->
+    <!--start-smooth-scrolling-->
+    <script type="text/javascript" src="{{url('js/js/move-top.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/js/easing.js')}}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!--//end-smooth-scrolling-->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/jquery.Jcrop.css')}}">;
     <script src="{{url('js/jquery-2.1.4.min.js')}}"></script>
     <script src="{{url('js/jquery.Jcrop.min.js')}}"></script>
     <script src="{{url('js/bootstrap.min.js')}}"></script>
+
     <script src="{{url('js/jquery.form.js')}}"></script>
-    <script src="{{url('js/vue.js')}}"></script>
-    <script src="{{url('js/vue-resource.js')}}"></script>
-    <meta id="token" name="token" value="{{csrf_token()}}">
 </head>
 <body>
-
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-top: -20px">
     <div class="container">
@@ -58,5 +84,6 @@
     </div>
 </nav>
 @yield('content')
+
 </body>
 </html>

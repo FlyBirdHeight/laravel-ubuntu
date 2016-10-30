@@ -18,6 +18,43 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-10 col-md-offset-1">
+                @if($errors->any())
+                    <ul class="list-group">
+                        @foreach($errors->all() as $error)
+                            <li class="list-group-item list-group-item-danger">{{$error}}</li>
+                        @endforeach
+                    </ul>
+                @endif
+                <form method="post" action="/user/infor">
+                    {{csrf_field()}}
+                    <div class="form-group">
+                        <label>Email：</label>
+                        <input type="text" class="form-control" name="email" value="{{Auth::user()->email}}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>用户名：</label>
+                        <input type="text" class="form-control" name="name" value="{{Auth::user()->name}}">
+                    </div>
+                    <div class="form-group">
+                        <label>真实姓名：</label>
+                        <input type="text" class="form-control" name="realname" value="{{Auth::user()->realname}}">
+                    </div>
+                    <div class="form-group">
+                        <label>电话：</label>
+                        <input type="text" class="form-control" name="phone" value="{{Auth::user()->phone}}">
+                    </div>
+                    <div class="form-group">
+                        <label>个人站点：</label>
+                        <input type="text" class="form-control" name="web" value="{{Auth::user()->web}}">
+                    </div>
+                    <div class="form-group">
+                        <label>个人描述</label>
+                        <textarea class="form-control" name="discuss" rows="10">{{Auth::user()->discuss}}</textarea>
+                    </div>
+                    <input type="submit" class="btn btn-success form-control" value="更新我的资料">
+                </form>
+            </div>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog" role="document">

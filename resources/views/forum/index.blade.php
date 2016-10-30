@@ -23,12 +23,16 @@
                                 <button type="submit" style="background-color: transparent;border-style: none"><i class="fa fa-heart {{in_array($discussion->id,$favourites)?'favorite':'not-favorite'}}"></i></button>
                                 {!! Form::close() !!}
                             @endif
-                            <a href="#">
+                        </div>
+                        <div class="media-left">
+                            <a href="{{url('infor/'.$discussion->user->id)}}">
                                 <img class="media-object img-circle" src="{{$discussion->user->avatar}}" style="height: 64px;width: 64px">
                             </a>
                         </div>
+
                         <div class="media-body">
-                            <h4 class="media-heading"><a href="/discussions/{{$discussion->id}}">{{$discussion->title}}</a>
+                            <h4 class="media-heading" style="margin-top: 10px">
+                                <a href="/discussions/{{$discussion->id}}">{{$discussion->title}}</a>
                                 <div class="media-conversation-meta">
                                     <span class="media-conversation-replies">
                                         <a href="/discussion/154#reply">{{ count($discussion->comments) }}</a>

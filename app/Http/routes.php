@@ -16,11 +16,18 @@ Route::resource('discussions','PostController');
 Route::resource('comment','CommentController');
 Route::resource('favourite','FavouriteController');
 
+Route::resource('infor','UserinforController');
+
+
+
 Route::get('/user/register', 'UsersController@register');
 Route::get('/user/login', 'UsersController@login');
 Route::get('/user/avatar', 'UsersController@avatar');
+Route::get('/user/password','UsersController@changepassword');
 Route::get('/verify/{confirm_code}','UsersController@confirmEmail');
 Route::get('mail/send','MailController@send');
+Route::post('/user/infor','UsersController@infor');
+Route::post('/user/password/change','UsersController@passwordchange');
 Route::post('/user/register', 'UsersController@store');
 Route::post('/user/login', 'UsersController@signin');
 Route::post('user/avatar/change', 'UsersController@changeavatar');

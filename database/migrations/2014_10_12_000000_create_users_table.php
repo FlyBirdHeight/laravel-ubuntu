@@ -16,6 +16,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('avatar');//保存用户头像的字段
+            $table->string('realname');
+            $table->string('phone');
+            $table->string('web');
+            $table->text('discuss');
             $table->string('confirm_code',64);
             $table->integer('is_confirm')->default(0);
             $table->string('email')->unique();

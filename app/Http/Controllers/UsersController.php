@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -26,7 +27,7 @@ class UsersController extends Controller
         if(Auth::attempt(['email'=>$request->get('email'),'password'=>$request->get('password')])){
             return redirect('/');
         }
-        Session::flash('user_login_failed','密码不正确');
+        Session::flash('user_login_failed','邮箱或密码不正确');
         return redirect('/user/login')->withInput();
     }
 
@@ -79,6 +80,29 @@ class UsersController extends Controller
         $user->save();
 
         return redirect('/user/avatar');
+    }
+    
+    public function infor(Requests\InforRequest $request){
+        $user = User::findOrFail(Auth::user()->id);
+        $user->update($request->all());
+        return redirect()->back();
+    }
+
+    public function changepassword(){
+        return view('users.changepassword');
+    }
+    
+    public function passwordchange(Requests\PasswordRequest $request){
+        if (\Hash::check($request->get('password_old'),Auth::user()->password)){
+            $data = User::findOrFail(Auth::user()->id);
+            $data->password = $request->get('password');
+            $data->save();
+            Auth::logout();
+            return redirect('/user/login');
+        }else{
+            Session::flash('user_password_failed','原密码不正确');
+            return redirect('/user/password');
+        }
     }
     /**
      * Display a listing of the resource.

@@ -30,7 +30,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','avatar','confirm_code'];
+    protected $fillable = ['name', 'email', 'password','avatar','realname','web','phone','confirm_code','discuss'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -54,4 +54,5 @@ class User extends Model implements AuthenticatableContract,
     public function favourites(){
         return $this->belongsToMany(Discussion::class,'favourites')->withTimestamps();
     }
+    
 }
