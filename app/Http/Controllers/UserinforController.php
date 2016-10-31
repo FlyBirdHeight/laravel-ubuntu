@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Favourite;
 use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class UserinforController extends Controller
 {
@@ -50,7 +52,12 @@ class UserinforController extends Controller
     public function show($id)
     {
         $user = User::where('id',$id)->get();
-        return view('users.show',compact('user'));
+        $favourite = DB::table('favourites')
+            ->join('discussions','favourites.discussion_id','=','discussions.id')
+            ->select('discussions.title','discussions.id','favourites.created_at','favourites.user_id')
+            ->where('favourites.user_id',$id)
+            ->get();
+        return view('users.show',compact('user','favourite'));
     }
 
     /**

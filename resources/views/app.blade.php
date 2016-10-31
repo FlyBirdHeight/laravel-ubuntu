@@ -31,7 +31,8 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a class="navbar-brand" href="/">Adsion country</a></li>
-                <li class="active"><a href="/">首页</a></li>
+                <li class="active"><a href="/"><span class="fa fa-cloud"></span> 首页</a></li>
+                <li class="active"><a href="#"><span class="fa fa-pencil"></span> 文章区（还在紧急制作中）</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())

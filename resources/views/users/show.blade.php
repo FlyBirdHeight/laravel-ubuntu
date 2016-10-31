@@ -74,52 +74,37 @@
 	<div id="work" class="work">
 		<div class="container">
 			<h3 class="title">{{$users->name}}帖子收藏</h3>
-			<div class="work-info">
-				<div class="col-md-6 work-left">
-					<h4>2014 - 2016 </h4>
-				</div>
-				<div class="col-md-6 work-right">
-					<h5><span class="glyphicon fa fa-briefcase"> </span> Company Name</h5>
-					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo </p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="work-info">
-				<div class="col-md-6 work-right work-right2">
-					<h4>2013 - 2014 </h4>
-				</div>
-				<div class="col-md-6 work-left work-left2">
-					<h5> Company Name <span class="glyphicon fa fa-briefcase"> </span></h5>
-					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo </p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="work-info">
-				<div class="col-md-6 work-left">
-					<h4>2012 - 2013 </h4>
-				</div>
-				<div class="col-md-6 work-right">
-					<h5><span class="glyphicon fa fa-briefcase"> </span> Company Name</h5>
-					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo </p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="work-info">
-				<div class="col-md-6 work-right work-right2">
-					<h4>2010 - 2012 </h4>
-				</div>
-				<div class="col-md-6 work-left work-left2">
-					<h5> Company Name <span class="glyphicon fa fa-briefcase"></span> </h5>
-					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo </p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
+			@foreach($favourite as $like)
+				@if($like->id%2==0)
+					<div class="work-info">
+						<div class="col-md-6 work-left">
+							<h4> {{$like->created_at}}</h4>
+						</div>
+						<div class="col-md-6 work-right">
+							<a href="/discussions/{{$like->id}}"><h5><span class="glyphicon fa fa-briefcase"> </span> {{$like->title}}</h5></a>
+							<p> </p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				@else
+					<div class="work-info">
+						<div class="col-md-6 work-right work-right2">
+							<h4> {{$like->created_at}}</h4>
+						</div>
+						<div class="col-md-6 work-left work-left2">
+							<a href="/discussions/{{$like->id}}"><h5> {{$like->title}} <span class="glyphicon fa fa-briefcase"> </span></h5></a>
+							<p> </p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				@endif
+			@endforeach
 		</div>
 	</div>
 	@endforeach
 	<!--//work-experience-->
 	<!--footer-->
-	<div class="footer">
+	<div class="footer" style="margin-top: -30px">
 		<div class="container">
 			<p>© 2016 My Resume. All rights reserved | Design by <a href="#">AdsionLi</a></p>
 		</div>
