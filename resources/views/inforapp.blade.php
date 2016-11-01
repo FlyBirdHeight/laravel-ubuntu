@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{asset('css/css/swipebox.css')}}">
     <!--//Custom Theme files-->
     <!--js-->
-    <script src="{{url('js/js/jquery-1.11.1.min.js')}}"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- //js -->
     <!--web-fonts-->
     <link href='//fonts.googleapis.com/css?family=Overlock:400,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -35,11 +35,8 @@
     </script>
     <!--//end-smooth-scrolling-->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('css/jquery.Jcrop.css')}}">;
-    <script src="{{url('js/jquery-2.1.4.min.js')}}"></script>
-    <script src="{{url('js/jquery.Jcrop.min.js')}}"></script>
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="{{url('js/bootstrap.min.js')}}"></script>
-
     <script src="{{url('js/jquery.form.js')}}"></script>
 </head>
 <body>
