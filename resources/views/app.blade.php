@@ -11,8 +11,8 @@
     <script src="{{url('js/jquery.Jcrop.min.js')}}"></script>
     <script src="{{url('js/bootstrap.min.js')}}"></script>
     <script src="{{url('js/jquery.form.js')}}"></script>
-    <script src="{{url('js/vue.js')}}"></script>
-    <script src="{{url('js/vue-resource.js')}}"></script>
+    <script src="//cdn.bootcss.com/vue/1.0.14/vue.min.js"></script>
+    <script src="//cdn.bootcss.com/vue-resource/0.6.1/vue-resource.min.js"></script>
     <meta id="token" name="token" value="{{csrf_token()}}">
 </head>
 <body>
