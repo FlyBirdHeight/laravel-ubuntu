@@ -34,6 +34,13 @@
                 <li class="active"><a href="/"><span class="fa fa-cloud"></span> 首页</a></li>
                 <li class="active"><a href="#"><span class="fa fa-pencil"></span> 文章区（还在紧急制作中）</a></li>
             </ul>
+            <form class="navbar-form navbar-left" role="search" method="post" action="/user/search">
+                {{csrf_field()}}
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" name="search">
+                </div>
+                <button type="submit" class="btn btn-default">查找帖子</button>
+            </form>
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
                     <li class="dropdown">

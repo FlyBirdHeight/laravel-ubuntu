@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Discussion;
+use App\Favourite;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -9,6 +11,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -102,6 +105,18 @@ class UsersController extends Controller
         }else{
             Session::flash('user_password_failed','原密码不正确');
             return redirect('/user/password');
+        }
+    }
+    
+    public function search(Requests\SearchRequest $request){
+        $name = $request->get('search');
+        $discussions = Discussion::where('title','like','%'.$name.'%')->get();
+        if (Auth::check()){
+            $favourites = Favourite::where('user_id',Auth::user()->id)
+                ->lists('discussion_id')->ToArray();
+            return view('forum.search',compact('discussions','favourites'));
+        }else{
+            return view('forum.search',compact('discussions'));
         }
     }
     /**
