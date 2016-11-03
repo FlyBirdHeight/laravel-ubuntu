@@ -15,6 +15,7 @@ Route::get('/','PostController@index');
 Route::resource('discussions','PostController');
 Route::resource('comment','CommentController');
 Route::resource('favourite','FavouriteController');
+Route::resource('admin','AdminController');
 
 Route::resource('infor','UserinforController');
 

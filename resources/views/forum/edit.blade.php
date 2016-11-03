@@ -11,24 +11,31 @@
                         @endforeach
                     </ul>
                 @endif
-                <form action="{{url('/discussions/'.$discussion->id)}}" method="post">
-                    <input type="hidden" name="_method" value="put">
-                    {{csrf_field()}}
-                    <div class="form-group">
-                        <label>标题：</label>
-                        <input type="text" class="form-control" name="title" value="{{$discussion->title}}">
-                    </div>
-                    <div class="editor">
+                {{--<form action="{{url('/discussions/'.$discussion->id)}}" method="post">--}}
+                {!! Form::model($discussion,['url'=>'/discussions/'.$discussion->id,'method'=>'PATCH']) !!}
+                <div class="form-group">
+                    <label>标题：</label>
+                    <input type="text" class="form-control" name="title" value="{{$discussion->title}}">
+                </div>
+                <div class="editor">
                     <div class="form-group">
                         <label>内容：</label>
                         <textarea class="form-control" rows="10" name="body" id="myEditor">{{$discussion->body}}</textarea>
                     </div>
-                    </div>
-                    <div>
-                        <input type="submit" class="btn btn-info pull-right" value="更新帖子">
-                    </div>
-                </form>
+                </div>
+                <div class="form-group">
+                    <label>标 签：</label>
+                    {!! Form::select('tag_list[]',$tags,null,['class'=>'form-control js-example-basic-multiple','multiple'=>'multiple']) !!}
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-info pull-right" value="更新帖子">
+                </div>
+                {!! Form::close() !!}
+                {{--</form>--}}
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(".js-example-basic-multiple").select2();
+    </script>
 @stop

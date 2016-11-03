@@ -6,8 +6,10 @@
     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link href="//cdn.bootcss.com/select2/4.0.1/css/select2.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/jquery-jcrop/2.0.4/css/Jcrop.css" rel="stylesheet">
     <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/select2/4.0.1/js/select2.full.min.js"></script>
     <script src="http://cdn.bootcss.com/jquery-jcrop/2.0.4/js/Jcrop.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{url('js/jquery.form.js')}}"></script>
@@ -15,10 +17,13 @@
     <script src="http://cdn.bootcss.com/vue-resource/0.6.1/vue-resource.min.js"></script>
     <meta id="token" name="token" value="{{csrf_token()}}">
 </head>
+<style>
+    body { padding-top: 80px; }
+</style>
 <body>
 
 <!-- Static navbar -->
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-top: -20px">
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-top: -80px">
     <div class="container">
         <div class="navbar-header navbar">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">

@@ -15,5 +15,13 @@ class Discussion extends Model
     public function comments(){
         return $this->hasMany(Comment::class);//$discussions->comments,可以拿到discussion的评论
     }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function getTagListAttribute(){
+        return $this->tags->lists('id')->all();//监听视图文件中是否有taglist这个字段
+    }
     
 }

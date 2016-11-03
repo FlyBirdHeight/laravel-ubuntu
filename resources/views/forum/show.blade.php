@@ -2,7 +2,6 @@
 @section('content')
     <div class="jumbotron">
         <div class="container">
-
             <div class="media">
                 <div class="media-left">
                     <a href="#">
@@ -18,18 +17,25 @@
                     </h4>
                     {{$discussion->user->name}}
                 </div>
-
             </div>
-
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md-9" role="main" id="post">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        @foreach($discussion->tags as $tag)
+                            <li style="display: inline-block;margin-left: 7px;background-color: {{$tag->color}}"><span class="label label-info">{{$tag->name}}</span></li>
+                        @endforeach
+                    </ul>
+                </div>
+                <hr>
                 <div class="blog-post">
                     {!! $html !!}
                 </div><!-- /.blog-post -->
                 <hr>
+                <h3><strong>评论</strong></h3>
                 @foreach($discussion->comments as $comment)
                     <div class="media">
                         <div class="media-left">

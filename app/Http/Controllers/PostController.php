@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Discussion;
 use App\Favourite;
 use App\Markdown\Markdown;
+use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -47,7 +48,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('forum.create');
+        $tags = Tag::lists('name','id');
+        return view('forum.create',compact('tags'));
     }
 
     /**
@@ -63,6 +65,7 @@ class PostController extends Controller
             'last_user_id'=>Auth::user()->id,
         ];
         $discussion = Discussion::create(array_merge($request->all(),$data));
+        $discussion->tags()->attach($request->get('tag_list'));
         return redirect()->action('PostController@show',['id'=>$discussion->id]);
     }
 
@@ -88,11 +91,12 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $discussion = Discussion::findOrFail($id);
+        $discussion = Discussion::find($id);
+        $tags = Tag::lists('name','id');
         if (Auth::user()->id !== $discussion->user_id){
             return redirect('/');
         }
-        return view('forum.edit',compact('discussion'));
+        return view('forum.edit',compact('discussion','tags'));
     }
 
     /**
@@ -104,8 +108,10 @@ class PostController extends Controller
      */
     public function update(Requests\DiscussionsRequest $request, $id)
     {
-        $discussion = Discussion::findOrFail($id);
-        $discussion->update($request->all());
+        $discussion = Discussion::find($id);
+        $discussion->title = $request->get('title');
+        $discussion->body = $request->get('body');
+        $discussion->tags()->sync($request->get('tag_list'));
         return redirect()->action('PostController@show',['id'=>$discussion->id]);
     }
 

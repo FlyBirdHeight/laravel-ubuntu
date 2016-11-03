@@ -41,3 +41,9 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
         'discussion_id'=>$faker->randomElement($discussion_ids),
     ];
 });
+
+$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name'=>$faker->word,
+    ];
+});
