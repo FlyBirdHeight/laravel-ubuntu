@@ -26,7 +26,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         @foreach($discussion->tags as $tag)
-                            <li style="display: inline-block;margin-left: 7px;background-color: {{$tag->color}}"><span class="label label-info">{{$tag->name}}</span></li>
+                            <li style="display: inline-block;margin-left: 7px"><span class="label label-info">{{$tag->name}}</span></li>
                         @endforeach
                     </ul>
                 </div>
