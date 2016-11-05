@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,6 +11,10 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    public function taginfor(){
+        $tags = Tag::all();
+        return view('admin.tag',compact('tags'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +22,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $data = User::all();
+        return view('admin.index',compact('data'));
     }
 
     /**
@@ -26,7 +33,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

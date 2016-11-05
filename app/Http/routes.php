@@ -15,7 +15,10 @@ Route::get('/','PostController@index');
 Route::resource('discussions','PostController');
 Route::resource('comment','CommentController');
 Route::resource('favourite','FavouriteController');
-Route::resource('admin','AdminController');
+
+Route::get('admin','AdminController@index');
+Route::get('admin/tag','AdminController@taginfor');
+//Route::post('admin/tag','AdminController@create');
 
 Route::resource('infor','UserinforController');
 
@@ -23,6 +26,8 @@ Route::resource('infor','UserinforController');
 
 Route::get('/user/register', 'UsersController@register');
 Route::get('/user/login', 'UsersController@login');
+//Route::get('/login','UsersController@github');
+//Route::get('/github/login','UsersController@githublogin');
 Route::get('/user/avatar', 'UsersController@avatar');
 Route::get('/user/password','UsersController@changepassword');
 Route::get('/verify/{confirm_code}','UsersController@confirmEmail');
@@ -39,3 +44,7 @@ Route::post('/crop/api','UsersController@cropAvatar');
 Route::post('/post/upload','PostController@upload');
 
 Route::get('/logout','UsersController@logout');
+
+Route::group(['prefix'=>'api/v1'],function (){
+    Route::resource('lessons','LessionController');
+});

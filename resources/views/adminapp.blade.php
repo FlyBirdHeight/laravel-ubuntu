@@ -31,11 +31,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">社区首页</a></li>
-                <li><a href="#">会员信息</a></li>
-                <li><a href="#">文章信息</a></li>
+                <li><a href="/">社区首页</a></li>
+                <li><a href="/admin">会员信息</a></li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">文章信息<strong class="caret"></strong> </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                           <a href="#">文章详情查看</a>
+                        </li>
+                        <li>
+                            <a href="#">添加文章</a>
+                        </li>
+                    </ul>
+                </li>
                 <li><a href="#">帖子信息</a></li>
-                <li><a href="#">标签管理</a></li>
+                <li><a href="/admin/tag">标签管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Link</a></li>
@@ -53,7 +62,6 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
 @yield('content')
 </body>
 </html>

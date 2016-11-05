@@ -11,7 +11,10 @@
         "intervention/image": "^2.3",
         "illuminate/html": "^5.0",
         "yuanchao/laravel-5-markdown-editor": "dev-master",
-        "overtrue/socialite":"~1.0"
+        "overtrue/socialite":"~1.0",
+        "dingo/api": "1.0.*@dev",
+        "tymon/jwt-auth": "0.5.*"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

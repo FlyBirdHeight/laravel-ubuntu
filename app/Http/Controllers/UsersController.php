@@ -16,8 +16,18 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Overtrue\Socialite\SocialiteManager;
+
 class UsersController extends Controller
 {
+    protected $config = [
+        'github' => [
+            'client_id'     => '4134fde8d827602dea8a',
+            'client_secret' => 'e4a15db57cb160c4c3ad6007cdc8c94e4a805c2f',
+            'redirect'      => 'http://localhost:8000/github/login',
+        ],
+    ];
+
     public function register(){
         return view('users.register');
     }
@@ -25,6 +35,17 @@ class UsersController extends Controller
     public function login(){
         return view('users.login');
     }
+
+//    public function github(){
+//        $socialite = new SocialiteManager($this->config);
+//
+//        return $socialite->driver('github')->redirect();
+//    }
+//    public function githublogin(){
+//        $socialite = new SocialiteManager($this->config);
+//        $githubUser = $socialite->driver('github')->user();
+//        dd($githubUser);
+//    }
 
     public function signin(Requests\UserLoginRequest $request){
         if(Auth::attempt(['email'=>$request->get('email'),'password'=>$request->get('password')])){

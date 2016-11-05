@@ -33,7 +33,7 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse collapse" id="select">
             <ul class="nav navbar-nav">
                 <li><a class="navbar-brand" href="/">Adsion country</a></li>
                 <li class="active"><a href="/"><span class="fa fa-cloud"></span> 首页</a></li>
@@ -42,9 +42,9 @@
             <form class="navbar-form navbar-left" role="search" method="post" action="/user/search">
                 {{csrf_field()}}
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" name="search">
+                    <input type="text" class="form-control" placeholder="Search" name="search" id="select" onkeyup="myText()">
                 </div>
-                <button type="submit" class="btn btn-default">查找帖子</button>
+                <button type="submit" class="btn btn-default" id="btnAdd" disabled="disabled">查找帖子</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
@@ -71,5 +71,18 @@
     </div>
 </nav>
 @yield('content')
+<script>
+    $(document).ready(function () {
+        $('#select').on('keyup',function () {
+            var v = $('#select').val();
+            v = $.trim(v);
+            if (!v){
+                $('#btnAdd').attr('disabled',true)
+            }else{
+                $('#btnAdd').attr('disabled',false)
+            }
+        })
+    });
+</script>
 </body>
 </html>
