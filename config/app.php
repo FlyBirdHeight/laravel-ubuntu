@@ -139,8 +139,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
         YuanChao\Editor\EndaEditorServiceProvider::class,
-        Dingo\Api\Provider\LaravelServiceProvider::class,
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+//        Dingo\Api\Provider\LaravelServiceProvider::class,
+//        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -201,8 +201,8 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
         'Form'      => Illuminate\Html\FormFacade::class,
         'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class,
-        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
+//        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+//        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
     ],
 
 ];
