@@ -36,22 +36,24 @@ class UsersController extends Controller
         return view('users.login');
     }
 
-//    public function github(){
-//        $socialite = new SocialiteManager($this->config);
-//
-//        return $socialite->driver('github')->redirect();
-//    }
-//    public function githublogin(){
-//        $socialite = new SocialiteManager($this->config);
-//        $githubUser = $socialite->driver('github')->user();
-//        dd($githubUser);
-//    }
+    public function github(){
+        $socialite = new SocialiteManager($this->config);
+
+        return $socialite->driver('github')->redirect();
+    }
+    public function githublogin(){
+        $socialite = new SocialiteManager($this->config);
+        $githubUser = $socialite->driver('github')->user();
+        dd($githubUser);
+    }
 
     public function signin(Requests\UserLoginRequest $request){
-        if(Auth::attempt(['email'=>$request->get('email'),'password'=>$request->get('password')])){
+        $field = filter_var($request->get('login'),FILTER_VALIDATE_EMAIL)?'email':'name';
+        $request->merge([$field=>$request->get('login')]);
+        if(Auth::attempt($request->only($field,'password'))){
             return redirect('/');
         }
-        Session::flash('user_login_failed','邮箱或密码不正确');
+        Session::flash('user_login_failed','邮箱/用户名或密码不正确');
         return redirect('/user/login')->withInput();
     }
 

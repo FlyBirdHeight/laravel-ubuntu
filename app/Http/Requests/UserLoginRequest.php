@@ -24,7 +24,7 @@ class UserLoginRequest extends Request
     public function rules()
     {
         return [
-            'email'=>'required|email',
+            'login'=>'required',
             'password'=>'required|min:6',
         ];
     }

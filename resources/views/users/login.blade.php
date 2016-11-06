@@ -18,8 +18,8 @@
             <form action="/user/login" method="post">
                 {{csrf_field()}}
                 <div class="form-group">
-                    <label>邮箱:</label>
-                    <input type="email" name="email" class="form-control">
+                    <label>邮箱或用户名:</label>
+                    <input type="text" name="login" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>密码:</label>
