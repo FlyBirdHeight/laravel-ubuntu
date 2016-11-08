@@ -10,6 +10,20 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use Illuminate\Support\Facades\Redis;
+
+//Route::get('/redis',function (){
+////    $data = [
+////        'event'=>'aNewMessage',
+////        'data'=>[
+////            'name'=>'Jelly'
+////        ]
+////    ];
+////    Redis::publish('test-channel',json_encode($data));
+//    event(new \App\Events\ANewMessage('Jelly'));
+//    return view('welcome');
+//});
+
 
 Route::get('/','PostController@index');
 Route::resource('discussions','PostController');
@@ -18,7 +32,9 @@ Route::resource('favourite','FavouriteController');
 
 Route::get('admin','AdminController@index');
 Route::get('admin/tag','AdminController@taginfor');
-//Route::post('admin/tag','AdminController@create');
+Route::post('admin/tag','AdminController@tagcreate');
+Route::delete('admin/tag/{tag_id}','AdminController@tagdelete');
+Route::get('admin/discuss','AdminController@discussinfo');
 
 Route::resource('infor','UserinforController');
 

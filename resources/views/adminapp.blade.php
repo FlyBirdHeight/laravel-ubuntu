@@ -13,6 +13,8 @@
 <script src="{{url('js/jquery.form.js')}}"></script>
 <script src="http://cdn.bootcss.com/vue/1.0.14/vue.min.js"></script>
 <script src="http://cdn.bootcss.com/vue-resource/0.6.1/vue-resource.min.js"></script>
+<script src="//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link href="http://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
 
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -43,7 +45,7 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="#">帖子信息</a></li>
+                <li><a href="/admin/discuss">帖子信息</a></li>
                 <li><a href="/admin/tag">标签管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

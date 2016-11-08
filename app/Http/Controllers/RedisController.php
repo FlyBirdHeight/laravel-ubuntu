@@ -2,51 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Discussion;
-use App\Markdown\Markdown;
-use App\Tag;
-use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
-class AdminController extends Controller
+class RedisController extends Controller
 {
-    protected $markdown;
-    public function __construct(Markdown $markdown)
-    {
-        $this->markdown = $markdown;
-    }
-
-
-
-    //tag
-    public function taginfor(){
-        $tags = Tag::all();
-        return view('admin.tag',compact('tags'));
-    }
-    
-    public function tagcreate(Requests\TagRequest $request){
-        $tags = Tag::create($request->except('_token'));
-        return redirect()->action('AdminController@taginfor');
-    }
-
-    public function tagdelete($id){
-        $re = Tag::where('id',$id)->delete();
-        if ($re){
-            $data = 1;
-        }else{
-            $data = 0;
-        }
-        return $data;
-    }
-
-    //帖子管理
-    public function discussinfo(){
-        $discuss = Discussion::orderBy('created_at','desc')->paginate(15);
-        return view('admin.discuss',compact('discuss'));
-    }
     /**
      * Display a listing of the resource.
      *
@@ -54,8 +18,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $data = User::all();
-        return view('admin.index',compact('data'));
+////        Redis::set('name','Lijingqiu');
+//        Cache::put('foo','bar',10);
+//        return Cache::get('foo');
     }
 
     /**
@@ -65,7 +30,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**

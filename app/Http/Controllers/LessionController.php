@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Lesson;
 use App\Transform\LessonTransformer;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,15 +12,12 @@ use Illuminate\Support\Facades\Response;
 
 class LessionController extends ApiController
 {
-    protected $lessonTransformer;
+    protected $userTransformer;
 
-    /**
-     * LessionController constructor.
-     * @param $lessonTransformer
-     */
-    public function __construct(LessonTransformer $lessonTransformer)
+
+    public function __construct(LessonTransformer $userTransformer)
     {
-        $this->lessonTransformer = $lessonTransformer;
+        $this->userTransformer = $userTransformer;
         $this->middleware('auth.basic');
     }
 
@@ -28,10 +26,10 @@ class LessionController extends ApiController
     //直接展示我们的数据结构（使用字段映射来解决）
     //显示我们的错误提示，没有错误信息
     public function index(){
-        $lesson = Lesson::all();
+        $user = User::all();
         return $this->response([
             'status'=>'success',
-            'data'=>$this->lessonTransformer->transformCollection($lesson->toArray())
+            'data'=>$this->userTransformer->transformCollection($user->toArray())
         ]);
     }
 
@@ -39,22 +37,22 @@ class LessionController extends ApiController
     //要使用依赖注入
     //如果为传入方法，则输入composer dump-autoload在命令行
     public function show($id){
-        $lesson = Lesson::find($id);
-        if (! $lesson){
+        $user = User::find($id);
+        if (! $user){
             return $this->responseNotFound();
         }
         return $this->response([
             'status'=>'success',
-            'data'=>$this->lessonTransformer->transform($lesson)
+            'data'=>$this->userTransformer->transform($user)
         ]);
     }
 
     public function store(Request $request){
 //        dd($request);
-        if (! $request->get('title') or ! $request->get('body') ){
+        if (! $request->get('email') or ! $request->get('password') ){
             return $this->setStatusCode(422)->responseError('vaildate fails');
         }
-        Lesson::create($request->all());
+        User::create($request->all());
         return $this->setStatusCode(201)->response([
             'status'=>'success',
             'message'=>'lesson created',
