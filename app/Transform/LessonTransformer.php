@@ -15,6 +15,7 @@ class LessonTransformer extends Transform
     //因为show返回的类型，所以使用这种方法
     public function transform($user){
         return [
+            'user_id'=>$user['id'],
             'user_name'=>$user['name'],
             'user_email'=>$user['email'],
         ];

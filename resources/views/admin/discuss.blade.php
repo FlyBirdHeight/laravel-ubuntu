@@ -92,7 +92,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="#" role="button" class="btn btn-danger">删除</a>
+                                <a href="javascript:;" role="button" class="btn btn-danger" onclick="delCate({{$discussion->id}})">删除帖子</a>
                             </td>
                         </tr>
                     @endforeach
@@ -100,5 +100,26 @@
                 </table>
             </div>
         </div>
+        {!! $discuss->render() !!}
     </div>
+
+    <script>
+        function delCate(discuss_id) {
+            swal({
+                title: "是否删除?",
+                text: "你这个操作将会删除这个帖子且不能恢复!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "是的，删除这个帖子",
+                closeOnConfirm: false
+            }, function(){
+                $.post("{{url('admin/discuss/')}}/"+discuss_id,{'_method':'delete','_token':"{{csrf_token()}}"}).done(function(data) {
+                    location.href = location.href;
+                }).error(function(data) {
+                    swal("OMG", "删除操作失败了!", "error");
+                });
+            });
+        }
+    </script>
 @stop

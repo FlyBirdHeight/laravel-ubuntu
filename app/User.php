@@ -46,6 +46,14 @@ class User extends Model implements AuthenticatableContract,
     public function comments(){
         return $this->hasMany(Comment::class);//$user->comments,可以拿到user发布的评论
     }
+    
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+    
+    public function article(){
+        return $this->hasMany(Article::class);
+    }
 
     public function setPasswordAttribute($password){
         $this->attributes['password'] = Hash::make($password);

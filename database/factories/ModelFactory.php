@@ -47,3 +47,23 @@ $factory->define(App\Tag::class, function (Faker\Generator $faker) {
         'name'=>$faker->word,
     ];
 });
+
+$factory->define(App\Article::class, function (Faker\Generator $faker) {
+    $user_ids = \App\User::lists('id')->toArray();//在5.3中只能使用pluck这个函数代替list
+    return [
+        'title' => $faker->sentence,
+        'body' => $faker->paragraph,
+        'user_id'=>$faker->randomElement($user_ids),
+        'last_user_id' => $faker->randomElement($user_ids),
+    ];
+});
+
+$factory->define(App\Articlecomment::class, function (Faker\Generator $faker) {
+    $user_ids = \App\User::lists('id')->toArray();//在5.3中只能使用pluck这个函数代替list
+    $discussion_ids = \App\Article::lists('id')->toArray();//在5.3中只能使用pluck这个函数代替list
+    return [
+        'body' => $faker->paragraph,
+        'user_id'=>$faker->randomElement($user_ids),
+        'article_id'=>$faker->randomElement($discussion_ids),
+    ];
+});

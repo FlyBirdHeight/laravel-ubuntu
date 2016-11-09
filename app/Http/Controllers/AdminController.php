@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Discussion;
 use App\Markdown\Markdown;
 use App\Tag;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -23,7 +25,7 @@ class AdminController extends Controller
 
     //tag
     public function taginfor(){
-        $tags = Tag::all();
+        $tags = Tag::orderBy('created_at')->paginate(15);
         return view('admin.tag',compact('tags'));
     }
     
@@ -47,6 +49,47 @@ class AdminController extends Controller
         $discuss = Discussion::orderBy('created_at','desc')->paginate(15);
         return view('admin.discuss',compact('discuss'));
     }
+
+    public function discussdelete($id){
+        $re = Discussion::where('id',$id)->delete();
+        if ($re){
+            $data = 1;
+        }else{
+            $data = 0;
+        }
+        return $data;
+    }
+    
+    //article
+    public function articleinfo(){
+        $articles = Article::orderBy('id','desc')->paginate(10);
+        return view('admin.article',compact('articles'));
+    }
+    
+    public function article(){
+        $tags = Tag::lists('name','id');
+        return view('admin.articlecreate',compact('tags'));
+    }
+
+    public function articlecreate(Requests\DiscussionsRequest $request){
+        $data = [
+            'user_id'=>Auth::user()->id,
+            'last_user_id'=>Auth::user()->id,
+        ];
+        $article = Article::create(array_merge($request->all(),$data));
+        $article->tags()->attach($request->get('tag_list'));
+        return redirect()->action('AdminController@articleinfo');
+    }
+
+    public function articledelete($id){
+        $re = Article::where('id',$id)->delete();
+        if ($re){
+            $data = 1;
+        }else{
+            $data = 0;
+        }
+        return $data;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +97,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $data = User::all();
+        $data = User::orderBy('created_at')->paginate(15);
         return view('admin.index',compact('data'));
     }
 

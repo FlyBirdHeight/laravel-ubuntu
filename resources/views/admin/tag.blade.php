@@ -98,6 +98,7 @@
                 </table>
             </div>
         </div>
+        {!! $tags->render() !!}
     </div>
     <script>
         function delCate(tag_id) {
