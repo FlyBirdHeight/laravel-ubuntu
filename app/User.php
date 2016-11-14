@@ -51,12 +51,12 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsToMany(Role::class);
     }
 
-    public function hasRole($role){
-        if (is_string($role)){
-            return $this->roles->contain('name',$role);//判断name中是否存在这个role比如admin
-        }
-        return !! $role->intersect($this->roles)->count();//intersect用来判断前面和后面是否存在相同的
-    }
+//    public function hasRole($role){
+//        if (is_string($role)){
+//            return $this->roles->contain('name',$role);//判断name中是否存在这个role比如admin
+//        }
+//        return !! $role->intersect($this->roles)->count();//intersect用来判断前面和后面是否存在相同的
+//    }
 
     public function article(){
         return $this->hasMany(Article::class);
