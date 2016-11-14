@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
 class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
+    AuthorizableContract,
+    CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
@@ -46,11 +46,18 @@ class User extends Model implements AuthenticatableContract,
     public function comments(){
         return $this->hasMany(Comment::class);//$user->comments,可以拿到user发布的评论
     }
-    
-    public function role(){
-        return $this->belongsTo(Role::class);
+
+    public function roles(){
+        return $this->belongsToMany(Role::class);
     }
-    
+
+    public function hasRole($role){
+        if (is_string($role)){
+            return $this->roles->contain('name',$role);//判断name中是否存在这个role比如admin
+        }
+        return !! $role->intersect($this->roles)->count();//intersect用来判断前面和后面是否存在相同的
+    }
+
     public function article(){
         return $this->hasMany(Article::class);
     }
@@ -62,5 +69,5 @@ class User extends Model implements AuthenticatableContract,
     public function favourites(){
         return $this->belongsToMany(Discussion::class,'favourites')->withTimestamps();
     }
-    
+
 }

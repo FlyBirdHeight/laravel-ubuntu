@@ -26,7 +26,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         @foreach($discussion->tags as $tag)
-                            <li style="display: inline-block;margin-left: 7px"><span class="label label-info">{{$tag->name}}</span></li>
+                            <li style="display: inline-block;margin-left: 7px"><span class="label" style="background-color: {{$tag->color}}">{{$tag->name}}</span></li>
                         @endforeach
                     </ul>
                 </div>
@@ -46,6 +46,20 @@
                         <div class="media-body">
                             <h4 class="media-heading">{{$comment->user->name}}</h4>
                             {{$comment->body}}
+                            <br>
+                            @if(Auth::check())
+                                <a class="pull-left" href="#" style="margin-top: 15px;margin-bottom: 15px;margin-right: 15px"
+                                   onclick="if (document.getElementById('{{$comment->id}}').style.display == 'none'){document.getElementById('{{$comment->id}}').style.display='block'}else {document.getElementById('{{$comment->id}}').style.display='none'}">
+                                    <font color="gray" face="微软雅黑">回复</font> </a>
+                            @endif
+                            @if(Auth::check() && Auth::user()->id == $discussion->user_id | Auth::user()->id == $comment->user_id)
+                                <a class="pull-left" href="#" style="margin-top: 15px;margin-bottom: 15px"><font color="gray" face="微软雅黑">删除</font></a>
+                            @endif
+                            <div class="media-bottom" style="margin-top: 20px;display: none" id="{{$comment->id}}">
+                                <textarea rows="5" class="form-control"></textarea>
+                                <button class="btn pull-left" style="margin-right: 15px;margin-top: 15px" onclick="document.getElementById({{$comment->id}}).style.display = 'none'">取消回复</button>
+                                <button class="btn btn-info pull-left" style="margin-top: 15px">发表回复</button>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -59,6 +73,11 @@
                         <div class="media-body">
                             <h4 class="media-heading">@{{comment.name}}</h4>
                             @{{comment.body}}
+                            <br>
+                            <a class="pull-left" href="#" style="margin-top: 15px;margin-right: 15px"
+                               onclick="if (document.getElementById('{{$comment->id}}').style.display == 'none'){document.getElementById('{{$comment->id}}').style.display='block'}else {document.getElementById('{{$comment->id}}').style.display='none'}">
+                                <font color="gray" face="微软雅黑">回复</font> </a>
+                            <a class="pull-left" href="#" style="margin-top: 15px;margin-right: 15px"><font color="gray" face="微软雅黑">删除</font></a>
                         </div>
                     </div>
                     <hr>

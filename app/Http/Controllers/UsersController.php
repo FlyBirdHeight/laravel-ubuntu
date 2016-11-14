@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Flashy;
 use Overtrue\Socialite\SocialiteManager;
 
 class UsersController extends Controller
@@ -51,6 +52,7 @@ class UsersController extends Controller
         $field = filter_var($request->get('login'),FILTER_VALIDATE_EMAIL)?'email':'name';
         $request->merge([$field=>$request->get('login')]);
         if(Auth::attempt($request->only($field,'password'))){
+            Flashy::message('Welcome Adsion社区!', 'http://adsionli.top');
             return redirect('/');
         }
         Session::flash('user_login_failed','邮箱/用户名或密码不正确');
@@ -59,6 +61,7 @@ class UsersController extends Controller
 
     public function logout(){
         Auth::logout();
+        Flashy::message('欢迎下次来到Adsion社区!', 'http://your-awesome-link.com');
         return redirect('/');
     }
 
@@ -175,7 +178,7 @@ class UsersController extends Controller
             'avatar'=>'/asset/images/timg.jpg'
         ];
         $user =  User::create(array_merge($request->all(),$data));
-        
+        Auth::login($user);
         //send mail
         //subject view confirm_code email
 //        $subject = 'Confirm Your Email';
@@ -183,6 +186,7 @@ class UsersController extends Controller
 //        Mail::send($view,$data,function ($message) use ($user,$subject){
 //            $message->to($user->email)->subject($subject);
 //        });
+        Flashy::message('欢迎来到Adsion社区!', 'http://your-awesome-link.com');
         return redirect('/');
     }
 

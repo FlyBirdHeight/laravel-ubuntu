@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Discussion;
+use App\Role;
 use Closure;
-
+use Flashy;
 class Admin
 {
     /**
@@ -16,14 +18,22 @@ class Admin
     public function handle($request, Closure $next)
     {
         if ($request->user()) {
-            if($request->user()->admin=="1")
-                return $next($request);
-            else {
-                return view('/');
+            if (count($request->user()->roles)==0){
+                Flashy::error('对不起，你没有管理员权限!', 'http://adsionli.top');
+                return redirect('/');
+            }else{
+                foreach ($request->user()->roles as $role){
+                    if ($role->label == "Admin"){
+                        return $next($request);
+                    }
+                }
+                Flashy::error('对不起，你没有管理员权限!', 'http://adsionli.top');
+                return redirect('/');
             }
         }
         else {
-            return view('/');
+            Flashy::error('对不起，你还未登录!', 'http://adsionli.top');
+            return view('users.login');
         }
     }
 }

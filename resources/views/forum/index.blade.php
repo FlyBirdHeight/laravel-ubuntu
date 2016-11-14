@@ -29,7 +29,6 @@
                                 <img class="media-object img-circle" src="{{$discussion->user->avatar}}" style="height: 64px;width: 64px">
                             </a>
                         </div>
-
                         <div class="media-body">
                             <h4 class="media-heading" style="margin-top: 10px">
                                 <a href="/discussions/{{$discussion->id}}">{{$discussion->title}}</a>

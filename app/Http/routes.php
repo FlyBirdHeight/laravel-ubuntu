@@ -30,16 +30,19 @@ Route::resource('discussions','PostController');
 Route::resource('comment','CommentController');
 Route::resource('favourite','FavouriteController');
 
-Route::get('admin','AdminController@index');
-Route::get('admin/tag','AdminController@taginfor');
-Route::post('admin/tag','AdminController@tagcreate');
-Route::delete('admin/tag/{tag_id}','AdminController@tagdelete');
-Route::get('admin/discuss','AdminController@discussinfo');
-Route::delete('admin/discuss/{discuss_id}','AdminController@discussdelete');
-Route::get('admin/article','AdminController@articleinfo');
-Route::get('admin/article/create','AdminController@article');
-Route::post('admin/article','AdminController@articlecreate');
-Route::delete('admin/article/{article_id}','AdminController@articledelete');
+Route::group(['middleware'=>'admin'],function (){
+    Route::get('admin','AdminController@index');
+    Route::get('admin/tag','AdminController@taginfor');
+    Route::post('admin/tag','AdminController@tagcreate');
+    Route::delete('admin/tag/{tag_id}','AdminController@tagdelete');
+    Route::get('admin/discuss','AdminController@discussinfo');
+    Route::delete('admin/discuss/{discuss_id}','AdminController@discussdelete');
+    Route::get('admin/article','AdminController@articleinfo');
+    Route::get('admin/article/create','AdminController@article');
+    Route::post('admin/article','AdminController@articlecreate');
+    Route::delete('admin/article/{article_id}','AdminController@articledelete');
+});
+
 
 Route::resource('infor','UserinforController');
 

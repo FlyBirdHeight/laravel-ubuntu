@@ -9,12 +9,14 @@
     <link href="//cdn.bootcss.com/select2/4.0.1/css/select2.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/jquery-jcrop/2.0.4/css/Jcrop.css" rel="stylesheet">
     <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="//cdn.bootcss.com/select2/4.0.1/js/select2.full.min.js"></script>
+    <script src="http://cdn.bootcss.com/select2/4.0.1/js/select2.full.min.js"></script>
     <script src="http://cdn.bootcss.com/jquery-jcrop/2.0.4/js/Jcrop.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{url('js/jquery.form.js')}}"></script>
     <script src="http://cdn.bootcss.com/vue/1.0.14/vue.min.js"></script>
     <script src="http://cdn.bootcss.com/vue-resource/0.6.1/vue-resource.min.js"></script>
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
     <meta id="token" name="token" value="{{csrf_token()}}">
 </head>
 <style>
@@ -53,6 +55,9 @@
                             {{Auth::user()->name}}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            @can('edit_form')
+                                <li><a href="/admin"><i class="fa fa-briefcase"></i> 进入管理员页面</a></li>
+                            @endcan
                             <li><a href="/user/avatar"> <i class="fa fa-user"></i> 修改个人信息</a></li>
                             <li><a href="#"><i class="fa fa-heart"></i> 查看收藏贴</a>
                             <li><a href="/user/password"> <i class="fa fa-cog"></i> 更换密码</a></li>
@@ -71,6 +76,7 @@
     </div>
 </nav>
 @yield('content')
+@include('flashy::message')
 <script>
     $(document).ready(function () {
         $('#select').on('keyup',function () {
