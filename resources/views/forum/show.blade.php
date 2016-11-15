@@ -74,10 +74,10 @@
                             <h4 class="media-heading">@{{comment.name}}</h4>
                             @{{comment.body}}
                             <br>
-                            <a class="pull-left" style="margin-top: 15px;margin-right: 15px"
+                            <button class="pull-left" style="margin-top: 15px;margin-bottom: 15px;margin-right: 15px;background-color: inherit;border-style: hidden;"
                                onclick="if (document.getElementById('@{{$comment->id}}').style.display == 'none'){document.getElementById('@{{$comment->id}}').style.display='block'}else {document.getElementById('@{{$comment->id}}').style.display='none'}">
-                                <font color="gray" face="微软雅黑">回复</font> </a>
-                            <a class="pull-left" href="#" style="margin-top: 15px;margin-right: 15px"><font color="gray" face="微软雅黑">删除</font></a>
+                                <font color="gray" face="微软雅黑">回复</font> </button>
+                            <a class="pull-left" href="#" style="margin-top: 15px;margin-bottom: 15px;border-style: hidden;background-color: inherit"><font color="gray" face="微软雅黑">删除</font></a>
                         </div>
                     </div>
                     <hr>
