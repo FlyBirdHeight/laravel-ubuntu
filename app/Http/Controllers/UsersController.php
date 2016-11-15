@@ -126,8 +126,9 @@ class UsersController extends Controller
             $data = User::findOrFail(Auth::user()->id);
             $data->password = $request->get('password');
             $data->save();
-            Auth::logout();
-            return redirect('/user/login');
+            Auth::login($data);
+            Flashy::success('修改密码成功!', '#');
+            return redirect('/');
         }else{
             Session::flash('user_password_failed','原密码不正确');
             return redirect('/user/password');

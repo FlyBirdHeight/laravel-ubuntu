@@ -25,7 +25,12 @@ class TagRequest extends Request
     {
         return [
             'name'=>'required',
-            
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required'=>'标签名不能为空',
         ];
     }
 }

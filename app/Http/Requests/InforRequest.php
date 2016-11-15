@@ -27,4 +27,10 @@ class InforRequest extends Request
             'name'=>'required',
         ];
     }
+    public function messages()
+    {
+        return [
+            'name.required'=>'用户名不能为空!'
+        ];
+    }
 }

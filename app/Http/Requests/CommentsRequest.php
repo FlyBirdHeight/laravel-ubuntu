@@ -28,4 +28,10 @@ class CommentsRequest extends Request
             'discussion_id'=>'required',
         ];
     }
+    public function messages()
+    {
+        return [
+          'body.required'=>'评论内容不能为空！'
+        ];
+    }
 }

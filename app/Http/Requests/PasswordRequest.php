@@ -29,4 +29,16 @@ class PasswordRequest extends Request
             'password_confirmation'=>'required|min:6',
         ];
     }
+    public function messages()
+    {
+        return [
+            'password_old.required'=>'旧密码不能为空!',
+            'password_old.min'=>'旧密码不能少于六位！',
+            'password.required'=>'新密码不能为空!',
+            'password.min'=>'新密码不能少于六位！',
+            'password.confirmed'=>'两次密码不相同！',
+            'password_confirmation.required'=>'确认密码不能为空!',
+            'password_confirmation.min'=>'确认密码不能少于六位！',
+        ];
+    }
 }

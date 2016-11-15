@@ -28,4 +28,11 @@ class UserLoginRequest extends Request
             'password'=>'required|min:6',
         ];
     }
+    public function messages()
+    {
+        return [
+            'login.required'=>'用户名或邮箱不能为空！',
+            'password.required'=>'密码不能为空！'
+        ];
+    }
 }

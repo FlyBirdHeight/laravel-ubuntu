@@ -28,4 +28,12 @@ class DiscussionsRequest extends Request
             'body'=>'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+          'title.required'=>'帖子标题不能为空！',
+           'body.required'=>'帖子内容不能为空！'
+        ];
+    }
 }
