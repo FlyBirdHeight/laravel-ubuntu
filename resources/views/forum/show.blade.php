@@ -75,7 +75,7 @@
                             @{{comment.body}}
                             <br>
                             <a class="pull-left" href="#" style="margin-top: 15px;margin-right: 15px"
-                               onclick="if (document.getElementById('{{$comment->id}}').style.display == 'none'){document.getElementById('{{$comment->id}}').style.display='block'}else {document.getElementById('{{$comment->id}}').style.display='none'}">
+                               onclick="if (document.getElementById('@{{$comment->id}}').style.display == 'none'){document.getElementById('@{{$comment->id}}').style.display='block'}else {document.getElementById('@{{$comment->id}}').style.display='none'}">
                                 <font color="gray" face="微软雅黑">回复</font> </a>
                             <a class="pull-left" href="#" style="margin-top: 15px;margin-right: 15px"><font color="gray" face="微软雅黑">删除</font></a>
                         </div>
