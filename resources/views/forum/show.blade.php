@@ -48,12 +48,12 @@
                             {{$comment->body}}
                             <br>
                             @if(Auth::check())
-                                <a class="pull-left" href="#" style="margin-top: 15px;margin-bottom: 15px;margin-right: 15px"
+                                <button class="pull-left" style="margin-top: 15px;margin-bottom: 15px;margin-right: 15px;background-color: inherit;border-style: hidden;"
                                    onclick="if (document.getElementById('{{$comment->id}}').style.display == 'none'){document.getElementById('{{$comment->id}}').style.display='block'}else {document.getElementById('{{$comment->id}}').style.display='none'}">
-                                    <font color="gray" face="微软雅黑">回复</font> </a>
+                                    <font color="gray" face="微软雅黑">回复</font> </button>
                             @endif
                             @if(Auth::check() && Auth::user()->id == $discussion->user_id | Auth::user()->id == $comment->user_id)
-                                <a class="pull-left" href="#" style="margin-top: 15px;margin-bottom: 15px"><font color="gray" face="微软雅黑">删除</font></a>
+                                <button class="pull-left" style="margin-top: 15px;margin-bottom: 15px;border-style: hidden;background-color: inherit"><font color="gray" face="微软雅黑">删除</font></button>
                             @endif
                             <div class="media-bottom" style="margin-top: 20px;display: none" id="{{$comment->id}}">
                                 <textarea rows="5" class="form-control"></textarea>
@@ -74,7 +74,7 @@
                             <h4 class="media-heading">@{{comment.name}}</h4>
                             @{{comment.body}}
                             <br>
-                            <a class="pull-left" href="#" style="margin-top: 15px;margin-right: 15px"
+                            <a class="pull-left" style="margin-top: 15px;margin-right: 15px"
                                onclick="if (document.getElementById('@{{$comment->id}}').style.display == 'none'){document.getElementById('@{{$comment->id}}').style.display='block'}else {document.getElementById('@{{$comment->id}}').style.display='none'}">
                                 <font color="gray" face="微软雅黑">回复</font> </a>
                             <a class="pull-left" href="#" style="margin-top: 15px;margin-right: 15px"><font color="gray" face="微软雅黑">删除</font></a>
