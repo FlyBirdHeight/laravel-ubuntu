@@ -45,7 +45,7 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">{{$comment->user->name}}</h4>
-                            {{$comment->body}}
+                            {!! $comment->body !!}
                             <br>
                             @if(Auth::check())
                                 <button class="pull-left" style="margin-top: 15px;margin-bottom: 15px;margin-right: 15px;background-color: inherit;border-style: hidden;"
@@ -85,7 +85,7 @@
                     {!! Form::hidden('discussion_id',$discussion->id) !!}
                     <div class="form-group">
                         <label>评论：</label>
-                        {!! Form::textarea('body',null,['class'=>'form-control','v-model'=>'newComment.body']) !!}
+                        {!! Form::textarea('body',null,['class'=>'form-control','v-model'=>'newComment.body','placeholder'=>'评论支持markdown语法，代码也可高亮显示']) !!}
                     </div>
                     <div>
                         {!! Form::submit('发表评论',['class'=>'btn btn-success pull-right']) !!}
@@ -97,6 +97,8 @@
             </div>
         </div>
     </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script >hljs.initHighlightingOnLoad();</script>
     @if(Auth::check())
         <script>
             Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');

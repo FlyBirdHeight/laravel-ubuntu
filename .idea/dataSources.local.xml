@@ -4,8 +4,6 @@
     <data-source name="MySQL - laravelapp@localhost" uuid="abbe49cd-da2c-4705-9b87-1e7aaeafe12a">
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <schema-pattern>laravelapp.*</schema-pattern>
-      <default-schemas>laravelapp.*</default-schemas>
     </data-source>
   </component>
 </project>

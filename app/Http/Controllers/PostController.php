@@ -12,7 +12,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use YuanChao\Editor\EndaEditor;
-
 class PostController extends Controller
 {
     protected $markdown;
@@ -79,7 +78,9 @@ class PostController extends Controller
     {
         $discussion = Discussion::findOrFail($id);
         $html = $this->markdown->markdown($discussion->body);
-//        dd($discussion);
+        foreach ($discussion->comments() as $comment){
+            $comment->body = EndaEditor::MarkDecode($comment->body);
+        }
         return view('forum.show',compact('discussion','html'));
     }
 

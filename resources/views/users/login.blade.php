@@ -1,6 +1,6 @@
 @extends('app')
-@section('content').
-<div class="container">
+@section('content')
+<div class="container" style="margin-top: 15px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3" role="main">
             @if($errors->any())
@@ -16,16 +16,16 @@
                 </div>
             @endif
             <form action="/user/login" method="post">
-                {{csrf_field()}}
-                <div class="form-group">
-                    <label>邮箱或用户名:</label>
-                    <input type="text" name="login" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>密码:</label>
-                    <input type="password" name="password" class="form-control">
-                </div>
-                <input class="btn btn-success form-control" type="submit" value="马上登陆">
+            {{csrf_field()}}
+            <div class="form-group">
+            <label>邮箱或用户名:</label>
+            <input type="text" name="login" class="form-control">
+            </div>
+            <div class="form-group">
+            <label>密码:</label>
+            <input type="password" name="password" class="form-control">
+            </div>
+            <input class="btn btn-success form-control" type="submit" value="马上登陆">
             </form>
         </div>
     </div>

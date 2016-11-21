@@ -21,8 +21,6 @@ class AdminController extends Controller
         $this->markdown = $markdown;
     }
 
-
-
     //tag
     public function taginfor(){
         $tags = Tag::orderBy('created_at')->paginate(15);
