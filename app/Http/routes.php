@@ -24,13 +24,16 @@ use Illuminate\Support\Facades\Redis;
 //    return view('welcome');
 //});
 
+Route::get('/login',function (){
+    return view('users.newlogin');
+});
 
 Route::get('/','PostController@index');
 Route::resource('discussions','PostController');
 Route::resource('comment','CommentController');
 Route::resource('favourite','FavouriteController');
 
-Route::group(['middleware'=>'admin'],function (){
+Route::group(['middleware'=>'admin','prefix'=>'admin'],function (){
     Route::get('admin','AdminController@index');
     Route::get('admin/tag','AdminController@taginfor');
     Route::post('admin/tag','AdminController@tagcreate');
@@ -47,27 +50,29 @@ Route::group(['middleware'=>'admin'],function (){
 Route::resource('infor','UserinforController');
 
 
+Route::group(['prefix'=>'user'],function (){
+    Route::get('register', 'UsersController@register');
+    Route::get('login', 'UsersController@login');
+    Route::post('search','UsersController@search');
+    Route::post('infor','UsersController@infor');
+    Route::post('password/change','UsersController@passwordchange');
+    Route::post('register', 'UsersController@store');
+    Route::post('login', 'UsersController@signin');
+    Route::post('avatar/change', 'UsersController@changeavatar');
+    Route::get('avatar', 'UsersController@avatar');
+    Route::get('password','UsersController@changepassword');
+});
 
-Route::get('/user/register', 'UsersController@register');
-Route::get('/user/login', 'UsersController@login');
 //Route::get('/login','UsersController@github');
 //Route::get('/github/login','UsersController@githublogin');
-Route::get('/user/avatar', 'UsersController@avatar');
-Route::get('/user/password','UsersController@changepassword');
+
 Route::get('/verify/{confirm_code}','UsersController@confirmEmail');
 Route::get('mail/send','MailController@send');
-Route::post('/user/search','UsersController@search');
-Route::post('/user/infor','UsersController@infor');
-Route::post('/user/password/change','UsersController@passwordchange');
-Route::post('/user/register', 'UsersController@store');
-Route::post('/user/login', 'UsersController@signin');
-Route::post('user/avatar/change', 'UsersController@changeavatar');
 Route::post('/crop/api','UsersController@cropAvatar');
-
-
 Route::post('/post/upload','PostController@upload');
 
 Route::get('/logout','UsersController@logout');
+
 
 Route::group(['prefix'=>'api/v1'],function (){
     Route::resource('lessons','LessionController');

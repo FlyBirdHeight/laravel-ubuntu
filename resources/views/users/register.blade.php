@@ -14,19 +14,19 @@
                 {{csrf_field()}}
                 <div class="form-group">
                     <label>用户名:</label>
-                    <input type="text" name="name" class="form-control">
+                    <input type="text" name="name" class="form-control" placeholder="用户名">
                 </div>
                 <div class="form-group">
                     <label>邮箱:</label>
-                    <input type="email" name="email" class="form-control">
+                    <input type="email" name="email" class="form-control" placeholder="请填写有效邮箱">
                 </div>
                 <div class="form-group">
                     <label>密码:</label>
-                    <input type="password" name="password" class="form-control">
+                    <input type="password" name="password" class="form-control" placeholder="密码在6-20位之间">
                 </div>
                 <div class="form-group">
                     <label>确认密码:</label>
-                    <input type="password" name="password_confirmation" class="form-control">
+                    <input type="password" name="password_confirmation" class="form-control" placeholder="密码在6-20位之间">
                 </div>
                 <input class="btn btn-success form-control" type="submit" value="马上注册">
             </form>

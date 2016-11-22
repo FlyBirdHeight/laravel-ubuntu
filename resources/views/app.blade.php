@@ -20,14 +20,10 @@
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
     <meta id="token" name="token" value="{{csrf_token()}}">
 </head>
-<style>
-    body { padding-top: 80px; }
-</style>
 <body>
-
 <!-- Static navbar -->
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-top: -80px">
-    <div class="container">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
         <div class="navbar-header navbar">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -66,8 +62,7 @@
                             <li> <a href="/logout">  <i class="fa fa-sign-out"></i> 退出登录</a></li>
                         </ul>
                     </li>
-                    <li><img src="{{Auth::user()->avatar}}" class="img-circle" width="50"> </li>
-
+                    <li><img src="{{Auth::user()->avatar}}" class="img-circle" alt="50*50" style="width: 50px;height: 50px"> </li>
                 @else
                     <li><a href="/user/login">登  陆</a></li>
                     <li><a href="/user/register">注  册</a></li>

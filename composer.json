@@ -16,7 +16,8 @@
         "tymon/jwt-auth": "0.5.*",
         "predis/predis": "^1.1",
         "baum/baum":"~1.1",
-        "mercuryseries/flashy": "^1.0"
+        "mercuryseries/flashy": "^1.0",
+        "mews/captcha": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

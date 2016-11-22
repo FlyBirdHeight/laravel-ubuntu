@@ -141,6 +141,7 @@ return [
         YuanChao\Editor\EndaEditorServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
         MercurySeries\Flashy\FlashyServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 //        Dingo\Api\Provider\LaravelServiceProvider::class,
 //        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
@@ -204,6 +205,7 @@ return [
         'Form'      => Illuminate\Html\FormFacade::class,
         'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class,
         'Flashy' => MercurySeries\Flashy\Flashy::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 //        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 //        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
     ],

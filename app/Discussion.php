@@ -2,11 +2,21 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Discussion extends Model
 {
-    protected $fillable = ['title','body','user_id','last_user_id'];
+    protected $fillable = ['title','body','user_id','last_user_id','create_at'];
+    
+    public function getCreatedAtAttribute($date)
+    {
+        if (Carbon::now() < Carbon::parse($date)->addDays(10)) {
+            return Carbon::parse($date);
+        }
+
+        return Carbon::parse($date)->diffForHumans();
+    }
 
     public function user(){
         return $this->belongsTo(User::class);//discussion->user,通过discussion拿到user

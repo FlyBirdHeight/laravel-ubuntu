@@ -44,7 +44,7 @@
                             </a>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">{{$comment->user->name}}</h4>
+                            <h4 class="media-heading">{{$comment->user->name}}&nbsp;&nbsp;<font color="gray" face="微软雅黑" size="1px">评论于{{$comment->created_at->diffForHumans()}}</font></h4>
                             {!! $comment->body !!}
                             <br>
                             @if(Auth::check())
@@ -85,7 +85,7 @@
                     {!! Form::hidden('discussion_id',$discussion->id) !!}
                     <div class="form-group">
                         <label>评论：</label>
-                        {!! Form::textarea('body',null,['class'=>'form-control','v-model'=>'newComment.body','placeholder'=>'评论支持markdown语法，代码也可高亮显示']) !!}
+                        {!! Form::textarea('body',null,['class'=>'form-control','v-model'=>'newComment.body','placeholder'=>'评论支持markdown语法']) !!}
                     </div>
                     <div>
                         {!! Form::submit('发表评论',['class'=>'btn btn-success pull-right']) !!}

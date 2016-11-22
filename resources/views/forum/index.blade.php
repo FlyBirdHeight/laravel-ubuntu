@@ -26,11 +26,12 @@
                         </div>
                         <div class="media-left">
                             <a href="{{url('infor/'.$discussion->user->id)}}">
-                                <img class="media-object img-circle" src="{{$discussion->user->avatar}}" style="height: 64px;width: 64px">
+                                <img class="media-object img-circle" alt="64*64" src="{{$discussion->user->avatar}}" style="height: 64px;width: 64px">
                             </a>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading" style="margin-top: 10px">
+                            <blockquote>
+                            <h4 class="media-heading">
                                 <a href="/discussions/{{$discussion->id}}">{{$discussion->title}}</a>
                                 <div class="media-conversation-meta">
                                     <span class="media-conversation-replies">
@@ -40,7 +41,9 @@
                                     <br>
                                 </div>
                             </h4>
-                            {{$discussion->user->name}}
+                                <font color="#dc143c" face="微软雅黑" size="1px">{{$discussion->user->name}}</font>
+                                <font color="gray" face="微软雅黑" size="1px">发表于{{$discussion->created_at->diffForHumans()}}</font>
+                            </blockquote>
                         </div>
                     </div>
                 @endforeach

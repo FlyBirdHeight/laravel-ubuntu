@@ -19,11 +19,11 @@
             {{csrf_field()}}
             <div class="form-group">
             <label>邮箱或用户名:</label>
-            <input type="text" name="login" class="form-control">
+            <input type="text" name="login" class="form-control" placeholder="用户名或邮箱">
             </div>
             <div class="form-group">
             <label>密码:</label>
-            <input type="password" name="password" class="form-control">
+            <input type="password" name="password" class="form-control" placeholder="密码">
             </div>
             <input class="btn btn-success form-control" type="submit" value="马上登陆">
             </form>
