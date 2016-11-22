@@ -85,10 +85,31 @@
                     {!! Form::hidden('discussion_id',$discussion->id) !!}
                     <div class="form-group">
                         <label>评论：</label>
-                        {!! Form::textarea('body',null,['class'=>'form-control','v-model'=>'newComment.body','placeholder'=>'评论支持markdown语法']) !!}
+                        <textarea
+                                class="form-control"
+                                v-model="newComment.body"
+                                placeholder="评论支持markdown语法"
+                                rows="3"
+                                name="body"
+                                cols="50"
+                                id="comment"
+                                onclick="document.getElementById('comment').rows = 6;
+                                         document.getElementById('dissubmit').style.display = 'block';
+                                         document.getElementById('submit').style.display = 'block';
+                                        "
+                        ></textarea>
                     </div>
-                    <div>
-                        {!! Form::submit('发表评论',['class'=>'btn btn-success pull-right']) !!}
+                    <div style="margin-bottom: 50px">
+                        <input
+                                class="btn btn-default pull-left"
+                                style="margin-right: 20px;display: none"
+                                id="dissubmit" type="button"
+                                value="取消评论"
+                                onclick="document.getElementById('comment').rows = 3;
+                                         document.getElementById('dissubmit').style.display = 'none';
+                                         document.getElementById('submit').style.display = 'none';
+                                         ">
+                        <input class="btn btn-success pull-left" style="display: none" id="submit" type="submit" value="发表评论">
                     </div>
                     {!! Form::close() !!}
                 @else

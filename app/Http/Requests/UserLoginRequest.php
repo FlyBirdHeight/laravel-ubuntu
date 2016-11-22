@@ -26,13 +26,16 @@ class UserLoginRequest extends Request
         return [
             'login'=>'required',
             'password'=>'required|min:6',
+            'captcha'=>'required|captcha',
         ];
     }
     public function messages()
     {
         return [
             'login.required'=>'用户名或邮箱不能为空！',
-            'password.required'=>'密码不能为空！'
+            'password.required'=>'密码不能为空！',
+            'captcha.required'=>'验证码不能为空!',
+            'captcha.captcha'=>'验证码错误!'
         ];
     }
 }

@@ -24,11 +24,14 @@ use Illuminate\Support\Facades\Redis;
 //    return view('welcome');
 //});
 
-Route::get('/login',function (){
-    return view('users.newlogin');
+
+
+Route::get('/captcha/{config?}',function (\Mews\Captcha\Captcha $captcha,$config  = 'default'){
+    return $captcha->create($config);
 });
 
 Route::get('/','PostController@index');
+
 Route::resource('discussions','PostController');
 Route::resource('comment','CommentController');
 Route::resource('favourite','FavouriteController');
@@ -52,7 +55,9 @@ Route::resource('infor','UserinforController');
 
 Route::group(['prefix'=>'user'],function (){
     Route::get('register', 'UsersController@register');
-    Route::get('login', 'UsersController@login');
+    Route::get('login',function (){
+        return view('users.login');
+    });
     Route::post('search','UsersController@search');
     Route::post('infor','UsersController@infor');
     Route::post('password/change','UsersController@passwordchange');
