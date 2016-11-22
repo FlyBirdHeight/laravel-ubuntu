@@ -33,7 +33,7 @@ Route::resource('discussions','PostController');
 Route::resource('comment','CommentController');
 Route::resource('favourite','FavouriteController');
 
-Route::group(['middleware'=>'admin','prefix'=>'admin'],function (){
+Route::group(['middleware'=>'admin'],function (){
     Route::get('admin','AdminController@index');
     Route::get('admin/tag','AdminController@taginfor');
     Route::post('admin/tag','AdminController@tagcreate');
