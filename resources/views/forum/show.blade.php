@@ -44,7 +44,7 @@
                             </a>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">{{$comment->user->name}}&nbsp;&nbsp;<font color="gray" face="微软雅黑" size="1px">评论于{{$comment->created_at->diffForHumans()}}</font></h4>
+                            <h4 class="media-heading">{{$comment->user->name}}&nbsp;&nbsp;<font color="gray" face="微软雅黑" size="1px">评论于{{$comment->created_at}}</font></h4>
                             {!! $comment->body !!}
                             <br>
                             @if(Auth::check())
