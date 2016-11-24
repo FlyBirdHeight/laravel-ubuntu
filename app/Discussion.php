@@ -12,10 +12,10 @@ class Discussion extends Model
     public function getCreatedAtAttribute($date)
     {
         if (Carbon::now() < Carbon::parse($date)->addDays(10)) {
-            return Carbon::parse($date);
+            return Carbon::parse($date)->diffForHumans();
         }
 
-        return Carbon::parse($date)->diffForHumans();
+        return Carbon::parse($date);
     }
 
     public function user(){

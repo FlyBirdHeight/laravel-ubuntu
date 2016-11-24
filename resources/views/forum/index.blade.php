@@ -42,7 +42,7 @@
                                 </div>
                             </h4>
                                 <font color="#dc143c" face="微软雅黑" size="1px">{{$discussion->user->name}}</font>
-                                <font color="gray" face="微软雅黑" size="1px">发表于{{$discussion->created_at->diffForHumans()}}</font>
+                                <font color="gray" face="微软雅黑" size="1px">发表于{{$discussion->created_at}}</font>
                             </blockquote>
                         </div>
                     </div>
